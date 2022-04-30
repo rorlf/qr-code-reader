@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": "@react-native-community",
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "no-shadow": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "curly": "off"
+  }
+}
