@@ -4,12 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AppNavigator } from 'navigators/AppNavigator';
 import { Provider } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import store from 'store';
+import colors from 'shared/styles/colors';
 
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        <StatusBar style="light" backgroundColor={colors.navigationBar} />
         <SafeAreaView style={{ flex: 1 }}>
           <AppNavigator />
         </SafeAreaView>
