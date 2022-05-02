@@ -16,5 +16,8 @@ export default StyleSheet.create({
   labelContainer: {
     flex: 1,
     marginRight: spacing(1)
+  },
+  copyButton: {
+    marginLeft: spacing(3)
   }
 });

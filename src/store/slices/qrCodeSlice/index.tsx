@@ -15,11 +15,14 @@ export const slice = createSlice({
   reducers: {
     addQrCode: (state, action: PayloadAction<string>) => {
       state.data.push(action.payload);
+    },
+    deleteQrCode: (state, action: PayloadAction<number>) => {
+      state.data.splice(action.payload);
     }
   }
 });
 
-export const { addQrCode } = slice.actions;
+export const { addQrCode, deleteQrCode } = slice.actions;
 
 export const useQrCode = () => useSelector(state => state.qrCode);
 

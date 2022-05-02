@@ -1,22 +1,25 @@
 import React, { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList, View } from 'react-native';
-import { Button, Text, Title } from 'shared/components';
-import { useQrCode } from 'store/slices/qrCodeSlice';
+import { Button, Title } from 'shared/components';
+import { deleteQrCode, useQrCode } from 'store/slices/qrCodeSlice';
 import { QrItem } from './components';
 import { QrItemProps } from './components/QrItem/types';
+import { useDispatch } from 'store/hooks';
 import * as Clipboard from 'expo-clipboard';
 import styles from './styles';
 
 export const QRListScreen = () => {
+  const dispatch = useDispatch();
   const { data } = useQrCode();
   const qrCodesFormatted = useMemo(() => formatQrCodes(), [data]);
   const { navigate } = useNavigation();
 
   function formatQrCodes(): QrItemProps[] {
-    return data.map(qrCodeData => ({
+    return data.map((qrCodeData, index) => ({
       qrCodeData,
-      onPressCopy: () => Clipboard.setString(qrCodeData)
+      onPressCopy: () => Clipboard.setString(qrCodeData),
+      onPressDelete: () => dispatch(deleteQrCode(index))
     }));
   }
 
