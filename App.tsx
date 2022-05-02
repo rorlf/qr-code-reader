@@ -5,6 +5,7 @@ import { AppNavigator } from 'navigators/AppNavigator';
 import { Provider } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import store from 'store';
 import colors from 'shared/styles/colors';
 
@@ -14,7 +15,9 @@ export default function App() {
       <NavigationContainer>
         <StatusBar style="light" backgroundColor={colors.navigationBar} />
         <SafeAreaView style={{ flex: 1 }}>
-          <AppNavigator />
+          <RootSiblingParent>
+            <AppNavigator />
+          </RootSiblingParent>
         </SafeAreaView>
       </NavigationContainer>
     </Provider>
