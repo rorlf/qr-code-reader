@@ -10,11 +10,12 @@ import { Button } from 'shared/components';
 import { Title } from 'shared/components/typographies';
 import { useDispatch } from 'store/hooks';
 import { addQrCode } from 'store/slices/qrCodeSlice';
+import { useIsFocused } from '@react-navigation/native';
 import styles from './styles';
 
 export const ReadQRScreen = () => {
-  const [permissionResponse, requestPermission, getPermission] =
-    usePermissions();
+  const isFocused = useIsFocused();
+  const [permissionResponse, requestPermission] = usePermissions();
   const [qrCodeData, setQrCodeData] = useState<string>();
   const [isLink, setIsLink] = useState(false);
   const dispatch = useDispatch();
@@ -68,10 +69,12 @@ export const ReadQRScreen = () => {
     return (
       <View style={styles.screen}>
         <Title style={styles.title}>Scan QR Code</Title>
-        <BarCodeScanner
-          style={styles.barCodeScanner}
-          onBarCodeScanned={onBarCodeScanned}
-        />
+        {isFocused && (
+          <BarCodeScanner
+            style={styles.barCodeScanner}
+            onBarCodeScanned={onBarCodeScanned}
+          />
+        )}
       </View>
     );
   }
