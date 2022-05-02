@@ -17,7 +17,7 @@ export const slice = createSlice({
       state.data.push(action.payload);
     },
     deleteQrCode: (state, action: PayloadAction<number>) => {
-      state.data.splice(action.payload);
+      state.data.splice(action.payload, 1);
     }
   }
 });
