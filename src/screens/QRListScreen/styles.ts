@@ -9,6 +9,9 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: metrics.screenPadding
   },
+  header: {
+    backgroundColor: colors.screenBackground
+  },
   title: {
     textAlign: 'center',
     marginTop: spacing(4)
@@ -16,6 +19,9 @@ export default StyleSheet.create({
   button: {
     margin: spacing(4),
     alignSelf: 'stretch'
+  },
+  noResults: {
+    marginTop: spacing(3)
   },
   footer: {
     marginBottom: metrics.footer
