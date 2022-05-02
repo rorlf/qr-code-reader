@@ -6,6 +6,7 @@ import { deleteQrCode, useQrCode } from 'store/slices/qrCodeSlice';
 import { QrItem } from './components';
 import { QrItemProps } from './components/QrItem/types';
 import { useDispatch } from 'store/hooks';
+import { showMessage } from 'services';
 import * as Clipboard from 'expo-clipboard';
 import styles from './styles';
 
@@ -18,9 +19,14 @@ export const QRListScreen = () => {
   function formatQrCodes(): QrItemProps[] {
     return data.map((qrCodeData, index) => ({
       qrCodeData,
-      onPressCopy: () => Clipboard.setString(qrCodeData),
+      onPressCopy: () => onPressCopy(qrCodeData),
       onPressDelete: () => dispatch(deleteQrCode(index))
     }));
+  }
+
+  function onPressCopy(qrCodeData: string) {
+    Clipboard.setString(qrCodeData);
+    showMessage('Copied to clipboard.');
   }
 
   function onPressScanQrCode() {
