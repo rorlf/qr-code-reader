@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AppTabsNavigatorParams } from './types';
-import { View, Text } from 'react-native';
+import { QRListScreen, ReadQRScreen } from 'screens';
 import { MaterialIcons } from '@expo/vector-icons';
 import colors from 'shared/styles/colors';
 import styles from './styles';
@@ -21,7 +21,7 @@ export const AppTabsNavigator = () => {
     >
       <Screen
         name="ReadQRScreen"
-        component={EmptyScreen}
+        component={ReadQRScreen}
         options={{
           tabBarLabel: 'Scan',
           tabBarIcon: ({ color, size }) => (
@@ -31,7 +31,7 @@ export const AppTabsNavigator = () => {
       />
       <Screen
         name="QRListScreen"
-        component={EmptyScreen}
+        component={QRListScreen}
         options={{
           tabBarLabel: 'List',
           tabBarIcon: ({ color, size }) => (
@@ -42,11 +42,3 @@ export const AppTabsNavigator = () => {
     </Navigator>
   );
 };
-
-function EmptyScreen() {
-  return (
-    <View>
-      <Text>Empty</Text>
-    </View>
-  );
-}
