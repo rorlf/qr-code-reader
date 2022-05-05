@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  StyleProp,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle
+} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { TextInput } from 'shared/components/core';
+import { TextInput as CustomTextInput } from 'shared/components/core';
 import { useDebounce } from 'shared/hooks';
 import colors from 'shared/styles/colors';
 import styles from './styles';
@@ -23,23 +29,31 @@ export const SearchInput = ({
 }: Props) => {
   const [searchKey, setSearchKey] = useState('');
   const searchKeyDebouced = useDebounce(searchKey, debounceTime);
+  const textInputRef = useRef<TextInput>(null);
 
   useEffect(() => {
     onSearch(searchKeyDebouced);
   }, [searchKeyDebouced]);
 
+  function onPressInput() {
+    textInputRef.current?.focus();
+  }
+
   return (
-    <View style={[styles.container, style]}>
-      <View style={styles.textInputContainer}>
-        <TextInput
-          returnKeyType="search"
-          value={searchKey}
-          onChangeText={setSearchKey}
-          placeholder={placeholder}
-          testID={testID}
-        />
+    <TouchableWithoutFeedback onPress={onPressInput}>
+      <View style={[styles.container, style]}>
+        <View style={styles.textInputContainer}>
+          <CustomTextInput
+            innerRef={textInputRef}
+            returnKeyType="search"
+            value={searchKey}
+            onChangeText={setSearchKey}
+            placeholder={placeholder}
+            testID={testID}
+          />
+        </View>
+        <MaterialIcons name="search" color={colors.textPrimary} size={25} />
       </View>
-      <MaterialIcons name="search" color={colors.textPrimary} size={25} />
-    </View>
+    </TouchableWithoutFeedback>
   );
 };

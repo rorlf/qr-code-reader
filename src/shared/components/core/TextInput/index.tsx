@@ -5,11 +5,13 @@ import styles from './styles';
 
 interface Props extends TextInputProps {
   style?: TextStyle;
+  innerRef?: any;
 }
 
-const CustomTextInput = ({ style, ...textInputProps }: Props) => {
+const CustomTextInput = ({ style, innerRef, ...textInputProps }: Props) => {
   return (
     <TextInput
+      ref={innerRef}
       style={[styles.text, style]}
       autoCapitalize="none"
       placeholderTextColor={colors.placeholder}
