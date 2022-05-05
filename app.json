@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "qr-code-reader",
+    "name": "QR Reader",
     "slug": "qr-code-reader",
     "version": "1.0.0",
     "orientation": "portrait",
