@@ -4,11 +4,10 @@ import colors from 'shared/styles/colors';
 import styles from './styles';
 
 interface Props extends TextInputProps {
-  children?: React.ReactNode;
   style?: TextStyle;
 }
 
-const CustomTextInput = ({ children, style, ...textInputProps }: Props) => {
+const CustomTextInput = ({ style, ...textInputProps }: Props) => {
   return (
     <TextInput
       style={[styles.text, style]}
