@@ -11,13 +11,15 @@ interface Props {
   onSearch: (searchKey: string) => void;
   debounceTime?: number;
   style?: StyleProp<ViewStyle>;
+  testID?: string;
 }
 
 export const SearchInput = ({
   placeholder = 'Search',
   onSearch,
   debounceTime = 500,
-  style
+  style,
+  testID
 }: Props) => {
   const [searchKey, setSearchKey] = useState('');
   const searchKeyDebouced = useDebounce(searchKey, debounceTime);
@@ -34,9 +36,9 @@ export const SearchInput = ({
           value={searchKey}
           onChangeText={setSearchKey}
           placeholder={placeholder}
+          testID={testID}
         />
       </View>
-
       <MaterialIcons name="search" color={colors.textPrimary} size={25} />
     </View>
   );
